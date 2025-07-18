@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abhishek P</title>
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.png" type="image/png"> <!-- Add your favicon.png here -->
     <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons (LinkedIn, GitHub, Email, Phone, University) -->
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* General Body Styles */
@@ -20,13 +22,13 @@
             flex-direction: column; /* Stack header, content, footer vertically */
         }
 
-        /* Header Styles - (a) Name left, Nav right */
+        /* Header Styles - (a) Name left, Nav right, plus search */
         header {
             background: #0A192F; /* Dark Blue/Black */
             color: #fff;
             padding: 1rem 2rem; /* Add horizontal padding */
             display: flex; /* Enable flexbox for header content */
-            justify-content: space-between; /* Push h1 to left, nav to right */
+            justify-content: space-between; /* Push h1/nav/search to distribute space */
             align-items: center; /* Vertically center items */
             position: sticky;
             top: 0;
@@ -39,19 +41,70 @@
             font-size: 1.8rem; /* Slightly larger header title */
         }
 
+        /* Navigation and Search Container */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem; /* Space between nav and search */
+        }
+
         /* Navigation Styles */
         nav a {
             color: #00BFA6; /* Teal/Green */
             margin-left: 1.5rem; /* Space between nav items */
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem; /* (b) Increased nav text size */
+            font-size: 1.1rem; /* Increased nav text size */
             transition: color 0.3s ease; /* Smooth transition for hover */
         }
 
         nav a:hover {
             text-decoration: underline;
             color: #00E0C2; /* Slightly brighter teal on hover */
+        }
+
+        /* Search Bar Styles */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-icon {
+            color: #00BFA6;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .search-icon:hover {
+            color: #00E0C2;
+        }
+
+        .search-input {
+            width: 0; /* Hidden by default */
+            padding: 0;
+            border: none;
+            border-bottom: 2px solid #00BFA6;
+            background: transparent;
+            color: #fff;
+            font-size: 1rem;
+            transition: width 0.3s ease, padding 0.3s ease;
+            opacity: 0;
+            pointer-events: none; /* Disable interaction when hidden */
+        }
+
+        .search-input.active {
+            width: 180px; /* Visible width */
+            padding: 0.5rem 0.8rem;
+            opacity: 1;
+            pointer-events: auto; /* Enable interaction when active */
+        }
+
+        /* Placeholder color for search input */
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
 
         /* Main content wrapper - (d) For pushing footer to bottom */
@@ -178,9 +231,29 @@
                 font-size: 1.5rem;
             }
 
+            .header-right {
+                flex-direction: column; /* Stack nav and search */
+                gap: 1rem;
+                width: 100%;
+            }
+
+            nav {
+                width: 100%;
+                text-align: center;
+            }
+
             nav a {
                 margin: 0 0.6rem; /* Reduce nav item margin */
                 font-size: 1rem;
+            }
+
+            .search-container {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .search-input.active {
+                width: 80%; /* Adjust search input width for mobile */
             }
 
             .content-wrapper {
@@ -235,11 +308,17 @@
 <body>
     <header>
         <h1>Abhishek P</h1>
-        <nav>
-            <a href="research.html">Research | Projects</a>
-            <a href="achievements.html">Achievements</a>
-            <a href="resume.html">Resume</a>
-        </nav>
+        <div class="header-right">
+            <nav>
+                <a href="research.html">Research | Projects</a>
+                <a href="achievements.html">Achievements</a>
+                <a href="resume.html">Resume</a>
+            </nav>
+            <div class="search-container">
+                <i class="fas fa-search search-icon" id="searchIcon"></i>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search...">
+            </div>
+        </div>
     </header>
 
     <main class="content-wrapper">
@@ -287,5 +366,18 @@
     <footer>
         &copy; 2025 Abhishek P
     </footer>
+
+    <script>
+        // JavaScript for search bar functionality
+        document.getElementById('searchIcon').addEventListener('click', function() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.classList.toggle('active');
+            if (searchInput.classList.contains('active')) {
+                searchInput.focus(); // Focus on the input when it becomes active
+            } else {
+                searchInput.value = ''; // Clear input when it hides
+            }
+        });
+    </script>
 </body>
 </html>
