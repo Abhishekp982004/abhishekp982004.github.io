@@ -4,41 +4,309 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Research & Projects | Abhishek P</title>
+<!-- Favicon -->
+<link rel="icon" href="favicon.png" type="image/png"> <!-- Add your favicon.png here -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
-body{margin:0;font-family:'Inter',sans-serif;background:#fff;color:#333}
-header{background:#0A192F;color:#fff;padding:1rem;text-align:center;position:sticky;top:0}
-header h1{margin:0;font-size:1.5rem}
-nav a{color:#00BFA6;margin:0 1rem;text-decoration:none;font-weight:600}
-nav a:hover{text-decoration:underline}
-section{max-width:800px;margin:2rem auto;padding:0 1rem}
-h2{color:#0A192F}
-footer{text-align:center;padding:1rem;background:#0A192F;color:#fff;margin-top:2rem}
-ul{line-height:1.8}
+    /* General Body Styles */
+    html, body {
+        height: 100%;
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: #fff;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Header Styles */
+    header {
+        background: #0A192F;
+        color: #fff;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+    /* Navigation and Search Container */
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    /* Navigation Styles */
+    nav a {
+        color: #00BFA6;
+        margin-left: 1.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+        color: #00E0C2;
+    }
+
+    /* Search Bar Styles */
+    .search-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-icon {
+        color: #00BFA6;
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .search-icon:hover {
+        color: #00E0C2;
+    }
+
+    .search-input {
+        width: 0; /* Hidden by default */
+        padding: 0;
+        border: none;
+        border-bottom: 2px solid #00BFA6;
+        background: transparent;
+        color: #fff;
+        font-size: 1rem;
+        transition: width 0.3s ease, padding 0.3s ease;
+        opacity: 0;
+        pointer-events: none; /* Disable interaction when hidden */
+    }
+
+    .search-input.active {
+        width: 180px; /* Visible width */
+        padding: 0.5rem 0.8rem;
+        opacity: 1;
+        pointer-events: auto; /* Enable interaction when active */
+    }
+
+    /* Placeholder color for search input */
+    .search-input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Main content wrapper */
+    .content-wrapper {
+        flex: 1;
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    section {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    h2 {
+        color: #0A192F;
+        border-bottom: 2px solid #00BFA6;
+        padding-bottom: 0.5rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+    }
+
+    ul {
+        line-height: 1.8;
+        font-size: 1.1rem; /* Increased text size */
+        padding-left: 25px;
+    }
+
+    ul li {
+        margin-bottom: 1rem; /* Space between list items */
+    }
+
+    /* Project item styles (from previous suggestion, now internal) */
+    .project-item {
+        background-color: #f9f9f9;
+        border: 1px solid #eee;
+        border-left: 5px solid #00BFA6; /* Accent border */
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Subtle shadow */
+    }
+
+    .project-item h3 {
+        color: #0A192F;
+        margin-top: 0;
+        margin-bottom: 0.8rem;
+        font-size: 1.4rem;
+    }
+
+    .project-item p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+
+    .project-links a {
+        display: inline-block;
+        margin-right: 1rem;
+        color: #00BFA6;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .project-links a:hover {
+        color: #00E0C2;
+        text-decoration: underline;
+    }
+
+    /* Footer Styles */
+    footer {
+        text-align: center;
+        padding: 1.5rem;
+        background: #0A192F;
+        color: #fff;
+        margin-top: auto;
+        font-size: 0.95rem;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            padding: 1rem;
+        }
+
+        header h1 {
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        .header-right {
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        nav {
+            width: 100%;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 0.6rem;
+            font-size: 1rem;
+        }
+
+        .search-container {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .search-input.active {
+            width: 80%;
+        }
+
+        .content-wrapper {
+            padding: 0 1rem;
+            margin: 1.5rem auto;
+        }
+
+        section {
+            padding: 0 0.8rem;
+            margin: 1.5rem auto;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            font-size: 1rem;
+        }
+    }
 </style>
 </head>
 <body>
 <header>
-<h1>Research & Projects</h1>
-<nav>
-<a href="index.html">Home</a>
-<a href="achievements.html">Achievements</a>
-<a href="resume.html">Resume</a>
-</nav>
+    <h1>Research & Projects</h1>
+    <div class="header-right">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="achievements.html">Achievements</a>
+            <a href="resume.html">Resume</a>
+        </nav>
+        <div class="search-container">
+            <i class="fas fa-search search-icon" id="searchIcon"></i>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search...">
+        </div>
+    </div>
 </header>
-<section>
-<h2>Research</h2>
-<ul>
-<li><strong>Radiation Pollution Study</strong>: Collected radiation samples across Bengaluru and PES University using Tektronix RSA306, applying linear regression to predict future thresholds surpassing WHO recommendations.</li>
-</ul>
-<h2>Projects</h2>
-<ul>
-<li><strong>Fitium</strong>: A Python-based fitness monitoring system for heart rate assessment, BMI calculation, and health analysis, customizable and lightweight.</li>
-<li><strong>MedSnap</strong>: MERN stack hospital management system with QR-based patient login, report scanning, receipt, and prescription handling, leveraging MongoDB and modern APIs for hospital workflow efficiency.</li>
-</ul>
-</section>
+<main class="content-wrapper">
+    <section>
+        <h2>Research</h2>
+        <div class="project-item">
+            <h3>Radiation Pollution Study</h3>
+            <p>Collected radiation samples across Bengaluru and PES University using Tektronix RSA306, applying linear regression to predict future thresholds surpassing WHO recommendations.</p>
+            <!-- Add links if applicable, e.g., to a research paper or a detailed write-up -->
+            <!-- <div class="project-links">
+                <a href="#" target="_blank">View Details</a>
+            </div> -->
+        </div>
+
+        <h2>Projects</h2>
+        <div class="project-item">
+            <h3>Fitium</h3>
+            <p>A Python-based fitness monitoring system for heart rate assessment, BMI calculation, and health analysis, customizable and lightweight.</p>
+            <div class="project-links">
+                <a href="https://github.com/yourusername/fitium" target="_blank">GitHub Repo</a>
+                <!-- <a href="https://yourlivedemo.com/fitium" target="_blank">Live Demo</a> -->
+            </div>
+        </div>
+
+        <div class="project-item">
+            <h3>MedSnap</h3>
+            <p>MERN stack hospital management system with QR-based patient login, report scanning, receipt, and prescription handling, leveraging MongoDB and modern APIs for hospital workflow efficiency.</p>
+            <div class="project-links">
+                <a href="https://github.com/yourusername/medsnap" target="_blank">GitHub Repo</a>
+                <!-- <a href="https://yourlivedemo.com/medsnap" target="_blank">Live Demo</a> -->
+            </div>
+        </div>
+    </section>
+</main>
 <footer>
-&copy; 2025 Abhishek P
+    &copy; 2025 Abhishek P
 </footer>
+<script>
+    // JavaScript for search bar functionality
+    document.getElementById('searchIcon').addEventListener('click', function() {
+        const searchInput = document.getElementById('searchInput');
+        searchInput.classList.toggle('active');
+        if (searchInput.classList.contains('active')) {
+            searchInput.focus(); // Focus on the input when it becomes active
+        } else {
+            searchInput.value = ''; // Clear input when it hides
+        }
+    });
+</script>
 </body>
 </html>
