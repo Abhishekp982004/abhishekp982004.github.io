@@ -84,7 +84,8 @@
         background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark overlay */
         display: flex;
         justify-content: center;
-        align-items: center; /* Center vertically now */
+        align-items: flex-start; /* Align to top for search bar */
+        padding-top: 15vh; /* Space from top, pushing it slightly down */
         z-index: 999; /* Ensure it's on top of everything */
         opacity: 0;
         visibility: hidden;
@@ -99,11 +100,11 @@
     .search-overlay-content {
         position: relative;
         width: 90%; /* Much wider */
-        max-width: 800px; /* Increased max-width */
+        max-width: 900px; /* Increased max-width */
         background-color: #0A192F; /* Dark background for search area */
         border-radius: 8px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        padding: 2rem; /* Increased padding */
+        padding: 2.5rem; /* Increased padding */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -111,10 +112,10 @@
 
     .search-input-overlay {
         width: 100%;
-        padding: 1.2rem 1.8rem; /* Larger padding */
+        padding: 1.5rem 2rem; /* Larger padding */
         border: none;
         border-radius: 5px;
-        font-size: 1.5rem; /* Larger font for input */
+        font-size: 1.8rem; /* Larger font for input */
         background-color: #1a2b47; /* Slightly lighter dark background */
         color: #fff;
         outline: none;
@@ -132,17 +133,17 @@
         margin-top: 1.5rem; /* Increased margin */
         background-color: #1a2b47;
         border-radius: 8px;
-        max-height: 300px; /* Increased max height for suggestions */
+        max-height: 400px; /* Increased max height for suggestions */
         overflow-y: auto;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     .search-suggestions-overlay li {
-        padding: 1rem 1.8rem; /* Increased padding */
+        padding: 1.2rem 2rem; /* Increased padding */
         color: #fff;
         cursor: pointer;
         transition: background-color 0.2s ease;
-        font-size: 1.1rem; /* Larger font for suggestions */
+        font-size: 1.2rem; /* Larger font for suggestions */
         border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
@@ -310,6 +311,7 @@
 </footer>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        console.log('Search script initialized.'); // Debugging log
         // Define the search index for all pages with content snippets
         const searchIndex = [
             // Home Page (index.html)
