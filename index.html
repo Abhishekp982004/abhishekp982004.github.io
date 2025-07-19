@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abhishek P</title>
+    <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* General Body Styles */
@@ -38,7 +41,7 @@
             font-size: 1.8rem;
         }
 
-        /* Navigation and Search Container */
+        /* Navigation and Header Right Container */
         .header-right {
             display: flex;
             align-items: center;
@@ -60,14 +63,8 @@
             color: #00E0C2;
         }
 
-        /* Search Bar Styles */
-        .search-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .search-icon {
+        /* Search Icon in Header */
+        .search-icon-header {
             color: #00BFA6;
             font-size: 1.2rem;
             cursor: pointer;
@@ -75,78 +72,112 @@
             transition: color 0.3s ease;
         }
 
-        .search-icon:hover {
+        .search-icon-header:hover {
             color: #00E0C2;
         }
 
-        .search-input {
-            width: 0;
-            padding: 0;
-            border: none;
-            border-bottom: 2px solid #00BFA6;
-            background: transparent;
-            color: #fff;
-            font-size: 1rem;
-            transition: width 0.3s ease, padding 0.3s ease;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .search-input.active {
-            width: 180px;
-            padding: 0.5rem 0.8rem;
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Search Suggestions Dropdown */
-        .search-suggestions {
-            position: absolute;
-            top: 100%; /* Position below the search input */
+        /* Search Overlay Styles */
+        .search-overlay {
+            position: fixed;
+            top: 0;
             left: 0;
-            right: 0;
-            background-color: #1a2b47; /* Darker background for suggestions */
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            max-height: 200px;
-            overflow-y: auto;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark overlay */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top for search bar */
+            padding-top: 10vh; /* Space from top */
+            z-index: 999; /* Ensure it's on top of everything */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-overlay-content {
+            position: relative;
+            width: 90%;
+            max-width: 600px; /* Wider search bar */
+            background-color: #0A192F; /* Dark background for search area */
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .search-input-overlay {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem; /* Larger font for input */
+            background-color: #1a2b47; /* Slightly lighter dark background */
+            color: #fff;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .search-input-overlay::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-suggestions-overlay {
+            width: 100%;
             list-style: none;
             padding: 0;
-            margin: 0;
-            z-index: 100; /* Ensure it's above other content */
-            display: none; /* Hidden by default */
+            margin-top: 1rem;
+            background-color: #1a2b47;
+            border-radius: 8px;
+            max-height: 250px;
+            overflow-y: auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        .search-suggestions.active {
-            display: block;
-        }
-
-        .search-suggestions li {
-            padding: 0.8rem 1rem;
+        .search-suggestions-overlay li {
+            padding: 0.8rem 1.5rem;
             color: #fff;
             cursor: pointer;
             transition: background-color 0.2s ease;
-            font-size: 0.95rem;
+            font-size: 1rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .search-suggestions li:last-child {
+        .search-suggestions-overlay li:last-child {
             border-bottom: none;
         }
 
-        .search-suggestions li:hover, .search-suggestions li.selected {
-            background-color: #00BFA6; /* Highlight on hover/selection */
+        .search-suggestions-overlay li:hover, .search-suggestions-overlay li.selected {
+            background-color: #00BFA6;
         }
 
-        /* Highlighting for search results */
         .search-highlight {
-            background-color: #FFFF00; /* Yellow highlight, adjust as needed */
-            color: #333; /* Ensure text is readable on highlight */
+            background-color: #FFFF00; /* Yellow highlight */
+            color: #333;
             padding: 2px 0;
+        }
+
+        .search-cancel-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .search-cancel-btn:hover {
+            color: #00BFA6;
         }
 
         /* Main content wrapper */
@@ -289,13 +320,14 @@
                 font-size: 1rem;
             }
 
-            .search-container {
-                width: 100%;
-                justify-content: center;
+            .search-overlay-content {
+                width: 95%;
+                padding: 1rem;
             }
 
-            .search-input.active {
-                width: 80%;
+            .search-input-overlay {
+                font-size: 1rem;
+                padding: 0.8rem 1rem;
             }
 
             .content-wrapper {
@@ -356,13 +388,20 @@
                 <a href="achievements.html">Achievements</a>
                 <a href="resume.html">Resume</a>
             </nav>
-            <div class="search-container">
-                <i class="fas fa-search search-icon" id="searchIcon"></i>
-                <input type="text" class="search-input" id="searchInput" placeholder="Search...">
-                <ul class="search-suggestions" id="searchResults"></ul>
-            </div>
+            <i class="fas fa-search search-icon-header" id="searchIconHeader"></i>
         </div>
     </header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-overlay-content">
+            <input type="text" class="search-input-overlay" id="searchInputOverlay" placeholder="Search your portfolio...">
+            <ul class="search-suggestions-overlay" id="searchResultsOverlay"></ul>
+            <button class="search-cancel-btn" id="searchCancelBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
 
     <main class="content-wrapper">
         <div class="container">
@@ -485,9 +524,11 @@
             }
         ];
 
-        const searchIcon = document.getElementById('searchIcon');
-        const searchInput = document.getElementById('searchInput');
-        const searchResults = document.getElementById('searchResults');
+        const searchIconHeader = document.getElementById('searchIconHeader');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchInputOverlay = document.getElementById('searchInputOverlay');
+        const searchResultsOverlay = document.getElementById('searchResultsOverlay');
+        const searchCancelBtn = document.getElementById('searchCancelBtn');
         let selectedSuggestionIndex = -1;
 
         // Function to highlight the search query in text
@@ -497,52 +538,56 @@
             return text.replace(regex, `<span class="search-highlight">$1</span>`);
         }
 
-        // Toggle search input visibility
-        searchIcon.addEventListener('click', function() {
-            searchInput.classList.toggle('active');
-            if (searchInput.classList.contains('active')) {
-                searchInput.focus();
-            } else {
-                searchInput.value = '';
-                searchResults.classList.remove('active');
-                searchResults.innerHTML = '';
-                selectedSuggestionIndex = -1;
-            }
+        // Open search overlay
+        searchIconHeader.addEventListener('click', function() {
+            searchOverlay.classList.add('active');
+            searchInputOverlay.focus();
+            // Prevent scrolling when overlay is active
+            document.body.style.overflow = 'hidden'; 
         });
 
-        // Handle input for suggestions
-        searchInput.addEventListener('input', function() {
-            const query = searchInput.value.toLowerCase().trim();
-            searchResults.innerHTML = '';
+        // Close search overlay
+        searchCancelBtn.addEventListener('click', function() {
+            searchOverlay.classList.remove('active');
+            searchInputOverlay.value = '';
+            searchResultsOverlay.innerHTML = '';
+            selectedSuggestionIndex = -1;
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+
+        // Handle input for suggestions in overlay
+        searchInputOverlay.addEventListener('input', function() {
+            const query = searchInputOverlay.value.toLowerCase().trim();
+            searchResultsOverlay.innerHTML = '';
             selectedSuggestionIndex = -1;
 
-            if (query.length > 1) { // Start suggesting after 1 character
+            if (query.length > 1) {
                 const filteredResults = searchIndex.filter(item => 
-                    item.contentSnippet.toLowerCase().includes(query) // Search in content snippet
+                    item.contentSnippet.toLowerCase().includes(query)
                 );
 
                 if (filteredResults.length > 0) {
                     filteredResults.forEach((item, index) => {
                         const li = document.createElement('li');
-                        li.innerHTML = highlightMatch(item.contentSnippet, query); // Display highlighted content snippet
+                        li.innerHTML = highlightMatch(item.contentSnippet, query);
                         li.dataset.url = item.url;
                         li.addEventListener('click', function() {
                             navigateToResult(item.url);
                         });
-                        searchResults.appendChild(li);
+                        searchResultsOverlay.appendChild(li);
                     });
-                    searchResults.classList.add('active');
+                    searchResultsOverlay.classList.add('active');
                 } else {
-                    searchResults.classList.remove('active');
+                    searchResultsOverlay.classList.remove('active');
                 }
             } else {
-                searchResults.classList.remove('active');
+                searchResultsOverlay.classList.remove('active');
             }
         });
 
-        // Handle keyboard navigation (Arrow Up/Down, Enter)
-        searchInput.addEventListener('keydown', function(event) {
-            const suggestions = searchResults.querySelectorAll('li');
+        // Handle keyboard navigation (Arrow Up/Down, Enter) for overlay
+        searchInputOverlay.addEventListener('keydown', function(event) {
+            const suggestions = searchResultsOverlay.querySelectorAll('li');
             if (suggestions.length === 0) return;
 
             if (event.key === 'ArrowDown') {
@@ -571,8 +616,7 @@
                 if (selectedSuggestionIndex !== -1) {
                     navigateToResult(suggestions[selectedSuggestionIndex].dataset.url);
                 } else {
-                    // If no suggestion selected, and Enter is pressed, navigate to the first relevant result
-                    const query = searchInput.value.toLowerCase().trim();
+                    const query = searchInputOverlay.value.toLowerCase().trim();
                     const firstMatch = searchIndex.find(item => 
                         item.contentSnippet.toLowerCase().includes(query)
                     );
@@ -583,11 +627,15 @@
             }
         });
 
-        // Hide suggestions when clicking outside
+        // Hide suggestions when clicking outside of the overlay content
         document.addEventListener('click', function(event) {
-            if (!searchIcon.contains(event.target) && !searchInput.contains(event.target) && !searchResults.contains(event.target)) {
-                searchResults.classList.remove('active');
+            const overlayContent = document.getElementById('searchOverlay').querySelector('.search-overlay-content');
+            if (!overlayContent.contains(event.target) && searchOverlay.classList.contains('active') && event.target !== searchIconHeader) {
+                searchOverlay.classList.remove('active');
+                searchInputOverlay.value = '';
+                searchResultsOverlay.innerHTML = '';
                 selectedSuggestionIndex = -1;
+                document.body.style.overflow = '';
             }
         });
 
@@ -595,10 +643,12 @@
         function navigateToResult(url) {
             window.location.href = url;
             // Clear search input and hide suggestions after navigation
-            searchInput.value = '';
-            searchResults.classList.remove('active');
-            searchResults.innerHTML = '';
+            searchInputOverlay.value = '';
+            searchResultsOverlay.classList.remove('active');
+            searchResultsOverlay.innerHTML = '';
             selectedSuggestionIndex = -1;
+            searchOverlay.classList.remove('active'); // Close overlay after navigation
+            document.body.style.overflow = ''; // Restore scrolling
         }
 
         // Handle hash changes for scrolling to section on the same page
@@ -607,7 +657,7 @@
             if (id) {
                 const element = document.getElementById(id);
                 if (element) {
-                    setTimeout(() => { // Small delay for smooth scroll
+                    setTimeout(() => {
                         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }, 100);
                 }
