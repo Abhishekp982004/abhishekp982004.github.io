@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Research & Projects | Abhishek P</title>
-<!-- Favicon -->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -332,17 +331,24 @@
         <i class="fas fa-search search-icon-header" id="searchIconHeader"></i>
     </div>
 </header>
+
+<div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay-content">
+        <input type="text" class="search-input-overlay" id="searchInputOverlay" placeholder="Search your portfolio...">
+        <ul class="search-suggestions-overlay" id="searchResultsOverlay"></ul>
+        <button class="search-cancel-btn" id="searchCancelBtn">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+
 <main class="content-wrapper">
     <section>
         <h2 id="research-section">Research</h2>
         <div class="project-item" id="radiation-pollution-study">
             <h3>Radiation Pollution Study</h3>
             <p>Collected radiation samples across Bengaluru and PES University using Tektronix RSA306, applying linear regression to predict future thresholds surpassing WHO recommendations.</p>
-            <!-- Add links if applicable, e.g., to a research paper or a detailed write-up -->
-            <!-- <div class="project-links">
-                <a href="#" target="_blank">View Details</a>
-            </div> -->
-        </div>
+            </div>
 
         <h2 id="projects-section">Projects</h2>
         <div class="project-item" id="fitium">
@@ -350,8 +356,7 @@
             <p>A Python-based fitness monitoring system for heart rate assessment, BMI calculation, and health analysis, customizable and lightweight.</p>
             <div class="project-links">
                 <a href="https://github.com/yourusername/fitium" target="_blank">GitHub Repo</a>
-                <!-- <a href="https://yourlivedemo.com/fitium" target="_blank">Live Demo</a> -->
-            </div>
+                </div>
         </div>
 
         <div class="project-item" id="medsnap">
@@ -359,8 +364,7 @@
             <p>MERN stack hospital management system with QR-based patient login, report scanning, receipt, and prescription handling, leveraging MongoDB and modern APIs for hospital workflow efficiency.</p>
             <div class="project-links">
                 <a href="https://github.com/yourusername/medsnap" target="_blank">GitHub Repo</a>
-                <!-- <a href="https://yourlivedemo.com/medsnap" target="_blank">Live Demo</a> -->
-            </div>
+                </div>
         </div>
     </section>
 </main>
@@ -369,7 +373,7 @@
 </footer>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('Search script initialized.'); // Debugging log
+        console.log('Search script initialized on research.html'); // Debugging log
         // Define the search index for all pages with content snippets
         const searchIndex = [
             // Home Page (index.html)
