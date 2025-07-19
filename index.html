@@ -142,6 +142,13 @@
             background-color: #00BFA6; /* Highlight on hover/selection */
         }
 
+        /* Highlighting for search results */
+        .search-highlight {
+            background-color: #FFFF00; /* Yellow highlight, adjust as needed */
+            color: #333; /* Ensure text is readable on highlight */
+            padding: 2px 0;
+        }
+
         /* Main content wrapper */
         .content-wrapper {
             flex: 1;
@@ -404,32 +411,91 @@
     </footer>
 
     <script>
-        // Define the search index for all pages with expanded content
+        // Define the search index for all pages with content snippets
         const searchIndex = [
             // Home Page (index.html)
-            { title: "About Me", keywords: "Abhishek P, currently pursuing B.Tech CSE (AIML) at PES University, passionate about machine learning, cybersecurity, and building impactful software solutions. I love contributing to projects, research, and participating in hackathons while maintaining strong academic discipline. Abhishek", url: "index.html#about-me" },
-            { title: "Skills", keywords: "Skills Python (proficient), Java (intermediate), C/C++ (moderate), R (basic), HTML, CSS, JavaScript, MERN stack, SQL", url: "index.html#skills" },
-            { title: "Education", keywords: "Education PES University, Bengaluru – B.Tech CSE (AIML) – 2027, Base PU College, Bengaluru – II PUC (PCMC) – May 2023, 94.5%, Bishop Cotton Boys’ School, Bengaluru – ICSE X – March 2021, 95.16%", url: "index.html#education" },
+            { 
+                title: "About Me", 
+                contentSnippet: "I am Abhishek P, currently pursuing B.Tech CSE (AIML) at PES University, passionate about machine learning, cybersecurity, and building impactful software solutions. I love contributing to projects, research, and participating in hackathons while maintaining strong academic discipline.", 
+                url: "index.html#about-me" 
+            },
+            { 
+                title: "Skills", 
+                contentSnippet: "Python (proficient), Java (intermediate), C/C++ (moderate), R (basic), HTML, CSS, JavaScript, MERN stack, SQL", 
+                url: "index.html#skills" 
+            },
+            { 
+                title: "Education", 
+                contentSnippet: "PES University, Bengaluru – B.Tech CSE (AIML) – 2027. Base PU College, Bengaluru – II PUC (PCMC) – May 2023, 94.5%. Bishop Cotton Boys’ School, Bengaluru – ICSE X – March 2021, 95.16%.", 
+                url: "index.html#education" 
+            },
             
             // Achievements Page (achievements.html)
-            { title: "Key Achievements", keywords: "Key Achievements Prakalp (Pioneer-24): Secured 2nd Runner-Up in a National Level Project/Innovation/Startup Presentation Competition organized by KITCoE, Kolhapur. Math Day 2024 (SAMKALANAM): 1st Runner-Up in the Treasure Hunt event organized by the Science and Humanities Department, PES University. Good Coder Competition (GCC) Hackathon: Secured 14th rank among 342+ participants in a hackathon conducted by the Science and Humanities Department, PES University, recognizing the top 50 participants. Academics: ICSE Class X (95.16%), II PUC PCMC (94.5%).", url: "achievements.html#key-achievements" },
-            { title: "Prakalp (Pioneer-24) Achievement", keywords: "Prakalp, Pioneer-24, 2nd Runner-Up, National Level Project/Innovation/Startup Presentation Competition, KITCoE, Kolhapur", url: "achievements.html#prakalp" },
-            { title: "Math Day 2024 (SAMKALANAM) Achievement", keywords: "Math Day 2024, SAMKALANAM, 1st Runner-Up, Treasure Hunt, Science and Humanities Department, PES University", url: "achievements.html#math-day" },
-            { title: "Good Coder Competition (GCC) Hackathon Achievement", keywords: "Good Coder Competition, GCC, Hackathon, 14th rank, 342+ participants, top 50, Science and Humanities Department, PES University", url: "achievements.html#gcc-hackathon" },
-            { title: "Academics Achievement", keywords: "Academics, ICSE Class X, 95.16%, II PUC PCMC, 94.5%", url: "achievements.html#academics" },
+            { 
+                title: "Key Achievements", 
+                contentSnippet: "Key Achievements: Prakalp (Pioneer-24), Math Day 2024 (SAMKALANAM), Good Coder Competition (GCC) Hackathon, Academics.", 
+                url: "achievements.html#key-achievements" 
+            },
+            { 
+                title: "Prakalp (Pioneer-24)", 
+                contentSnippet: "Secured 2nd Runner-Up in a National Level Project/Innovation/Startup Presentation Competition organized by KITCoE, Kolhapur.", 
+                url: "achievements.html#prakalp" 
+            },
+            { 
+                title: "Math Day 2024 (SAMKALANAM)", 
+                contentSnippet: "1st Runner-Up in the Treasure Hunt event organized by the Science and Humanities Department, PES University.", 
+                url: "achievements.html#math-day" 
+            },
+            { 
+                title: "Good Coder Competition (GCC) Hackathon", 
+                contentSnippet: "Secured 14th rank among 342+ participants in a hackathon conducted by the Science and Humanities Department, PES University, recognizing the top 50 participants.", 
+                url: "achievements.html#gcc-hackathon" 
+            },
+            { 
+                title: "Academics (Achievements)", 
+                contentSnippet: "ICSE Class X (95.16%), II PUC PCMC (94.5%).", 
+                url: "achievements.html#academics" 
+            },
 
             // Research & Projects Page (research.html)
-            { title: "Research Section", keywords: "Research Radiation Pollution Study: Collected radiation samples across Bengaluru and PES University using Tektronix RSA306, applying linear regression to predict future thresholds surpassing WHO recommendations.", url: "research.html#research-section" },
-            { title: "Radiation Pollution Study", keywords: "Radiation Pollution Study, radiation samples, Bengaluru, PES University, Tektronix RSA306, linear regression, predict future thresholds, WHO recommendations", url: "research.html#radiation-pollution-study" },
-            { title: "Projects Section", keywords: "Projects Fitium: A Python-based fitness monitoring system for heart rate assessment, BMI calculation, and health analysis, customizable and lightweight. MedSnap: MERN stack hospital management system with QR-based patient login, report scanning, receipt, and prescription handling, leveraging MongoDB and modern APIs for hospital workflow efficiency.", url: "research.html#projects-section" },
-            { title: "Fitium Project", keywords: "Fitium, Python-based, fitness monitoring system, heart rate assessment, BMI calculation, health analysis, customizable, lightweight", url: "research.html#fitium" },
-            { title: "MedSnap Project", keywords: "MedSnap, MERN stack, hospital management system, QR-based patient login, report scanning, receipt, prescription handling, MongoDB, modern APIs, hospital workflow efficiency", url: "research.html#medsnap" }
+            { 
+                title: "Research Section", 
+                contentSnippet: "Research: Radiation Pollution Study", 
+                url: "research.html#research-section" 
+            },
+            { 
+                title: "Radiation Pollution Study", 
+                contentSnippet: "Collected radiation samples across Bengaluru and PES University using Tektronix RSA306, applying linear regression to predict future thresholds surpassing WHO recommendations.", 
+                url: "research.html#radiation-pollution-study" 
+            },
+            { 
+                title: "Projects Section", 
+                contentSnippet: "Projects: Fitium, MedSnap", 
+                url: "research.html#projects-section" 
+            },
+            { 
+                title: "Fitium Project", 
+                contentSnippet: "A Python-based fitness monitoring system for heart rate assessment, BMI calculation, and health analysis, customizable and lightweight.", 
+                url: "research.html#fitium" 
+            },
+            { 
+                title: "MedSnap Project", 
+                contentSnippet: "MERN stack hospital management system with QR-based patient login, report scanning, receipt, and prescription handling, leveraging MongoDB and modern APIs for hospital workflow efficiency.", 
+                url: "research.html#medsnap" 
+            }
         ];
 
         const searchIcon = document.getElementById('searchIcon');
         const searchInput = document.getElementById('searchInput');
         const searchResults = document.getElementById('searchResults');
-        let selectedSuggestionIndex = -1; // To keep track of selected suggestion for keyboard navigation
+        let selectedSuggestionIndex = -1;
+
+        // Function to highlight the search query in text
+        function highlightMatch(text, query) {
+            if (!query) return text;
+            const regex = new RegExp(`(${query})`, 'gi'); // Case-insensitive global search
+            return text.replace(regex, `<span class="search-highlight">$1</span>`);
+        }
 
         // Toggle search input visibility
         searchIcon.addEventListener('click', function() {
@@ -438,40 +504,39 @@
                 searchInput.focus();
             } else {
                 searchInput.value = '';
-                searchResults.classList.remove('active'); // Hide suggestions when closing
-                searchResults.innerHTML = ''; // Clear suggestions
+                searchResults.classList.remove('active');
+                searchResults.innerHTML = '';
                 selectedSuggestionIndex = -1;
             }
         });
 
         // Handle input for suggestions
         searchInput.addEventListener('input', function() {
-            const query = searchInput.value.toLowerCase();
-            searchResults.innerHTML = ''; // Clear previous suggestions
-            selectedSuggestionIndex = -1; // Reset selection
+            const query = searchInput.value.toLowerCase().trim();
+            searchResults.innerHTML = '';
+            selectedSuggestionIndex = -1;
 
             if (query.length > 1) { // Start suggesting after 1 character
                 const filteredResults = searchIndex.filter(item => 
-                    item.title.toLowerCase().includes(query) || 
-                    item.keywords.toLowerCase().includes(query)
+                    item.contentSnippet.toLowerCase().includes(query) // Search in content snippet
                 );
 
                 if (filteredResults.length > 0) {
                     filteredResults.forEach((item, index) => {
                         const li = document.createElement('li');
-                        li.textContent = item.title;
-                        li.dataset.url = item.url; // Store URL for navigation
+                        li.innerHTML = highlightMatch(item.contentSnippet, query); // Display highlighted content snippet
+                        li.dataset.url = item.url;
                         li.addEventListener('click', function() {
                             navigateToResult(item.url);
                         });
                         searchResults.appendChild(li);
                     });
-                    searchResults.classList.add('active'); // Show suggestions
+                    searchResults.classList.add('active');
                 } else {
-                    searchResults.classList.remove('active'); // Hide if no results
+                    searchResults.classList.remove('active');
                 }
             } else {
-                searchResults.classList.remove('active'); // Hide if query is too short
+                searchResults.classList.remove('active');
             }
         });
 
@@ -481,39 +546,35 @@
             if (suggestions.length === 0) return;
 
             if (event.key === 'ArrowDown') {
-                event.preventDefault(); // Prevent cursor movement in input
+                event.preventDefault();
                 if (selectedSuggestionIndex < suggestions.length - 1) {
                     if (selectedSuggestionIndex !== -1) {
                         suggestions[selectedSuggestionIndex].classList.remove('selected');
                     }
                     selectedSuggestionIndex++;
                     suggestions[selectedSuggestionIndex].classList.add('selected');
-                    // Scroll into view if needed
                     suggestions[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
                 }
             } else if (event.key === 'ArrowUp') {
-                event.preventDefault(); // Prevent cursor movement in input
+                event.preventDefault();
                 if (selectedSuggestionIndex > 0) {
                     suggestions[selectedSuggestionIndex].classList.remove('selected');
                     selectedSuggestionIndex--;
                     suggestions[selectedSuggestionIndex].classList.add('selected');
-                    // Scroll into view if needed
                     suggestions[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
                 } else if (selectedSuggestionIndex === 0) {
                     suggestions[selectedSuggestionIndex].classList.remove('selected');
-                    selectedSuggestionIndex = -1; // Go back to input
+                    selectedSuggestionIndex = -1;
                 }
             } else if (event.key === 'Enter') {
-                event.preventDefault(); // Prevent form submission
+                event.preventDefault();
                 if (selectedSuggestionIndex !== -1) {
-                    // Navigate to the selected suggestion
                     navigateToResult(suggestions[selectedSuggestionIndex].dataset.url);
                 } else {
-                    // If no suggestion is selected, perform a basic search (e.g., navigate to first match or a search results page)
-                    const query = searchInput.value.toLowerCase();
+                    // If no suggestion selected, and Enter is pressed, navigate to the first relevant result
+                    const query = searchInput.value.toLowerCase().trim();
                     const firstMatch = searchIndex.find(item => 
-                        item.title.toLowerCase().includes(query) || 
-                        item.keywords.toLowerCase().includes(query)
+                        item.contentSnippet.toLowerCase().includes(query)
                     );
                     if (firstMatch) {
                         navigateToResult(firstMatch.url);
@@ -542,11 +603,13 @@
 
         // Handle hash changes for scrolling to section on the same page
         window.addEventListener('hashchange', function() {
-            const id = window.location.hash.substring(1); // Get ID without '#'
+            const id = window.location.hash.substring(1);
             if (id) {
                 const element = document.getElementById(id);
                 if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => { // Small delay for smooth scroll
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
                 }
             }
         });
@@ -557,7 +620,6 @@
             if (id) {
                 const element = document.getElementById(id);
                 if (element) {
-                    // Use a slight delay to ensure layout is stable
                     setTimeout(() => {
                         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }, 100);
