@@ -13,54 +13,54 @@
     <style>
         /* General Body Styles */
         html, body {
-            height: 100%; /* Ensure html and body take full viewport height */
+            height: 100%;
             margin: 0;
             font-family: 'Inter', sans-serif;
             background: #fff;
             color: #333;
-            display: flex; /* Use flexbox for overall layout */
-            flex-direction: column; /* Stack header, content, footer vertically */
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Header Styles - (a) Name left, Nav right, plus search */
+        /* Header Styles */
         header {
-            background: #0A192F; /* Dark Blue/Black */
+            background: #0A192F;
             color: #fff;
-            padding: 1rem 2rem; /* Add horizontal padding */
-            display: flex; /* Enable flexbox for header content */
-            justify-content: space-between; /* Push h1/nav/search to distribute space */
-            align-items: center; /* Vertically center items */
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: sticky;
             top: 0;
             z-index: 10;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         header h1 {
             margin: 0;
-            font-size: 1.8rem; /* Slightly larger header title */
+            font-size: 1.8rem;
         }
 
         /* Navigation and Search Container */
         .header-right {
             display: flex;
             align-items: center;
-            gap: 1.5rem; /* Space between nav and search */
+            gap: 1.5rem;
         }
 
         /* Navigation Styles */
         nav a {
-            color: #00BFA6; /* Teal/Green */
-            margin-left: 1.5rem; /* Space between nav items */
+            color: #00BFA6;
+            margin-left: 1.5rem;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem; /* Increased nav text size */
-            transition: color 0.3s ease; /* Smooth transition for hover */
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
         }
 
         nav a:hover {
             text-decoration: underline;
-            color: #00E0C2; /* Slightly brighter teal on hover */
+            color: #00E0C2;
         }
 
         /* Search Bar Styles */
@@ -83,7 +83,7 @@
         }
 
         .search-input {
-            width: 0; /* Hidden by default */
+            width: 0;
             padding: 0;
             border: none;
             border-bottom: 2px solid #00BFA6;
@@ -92,147 +92,185 @@
             font-size: 1rem;
             transition: width 0.3s ease, padding 0.3s ease;
             opacity: 0;
-            pointer-events: none; /* Disable interaction when hidden */
+            pointer-events: none;
         }
 
         .search-input.active {
-            width: 180px; /* Visible width */
+            width: 180px;
             padding: 0.5rem 0.8rem;
             opacity: 1;
-            pointer-events: auto; /* Enable interaction when active */
+            pointer-events: auto;
         }
 
-        /* Placeholder color for search input */
         .search-input::placeholder {
             color: rgba(255, 255, 255, 0.7);
         }
 
-        /* Main content wrapper - (d) For pushing footer to bottom */
+        /* Search Suggestions Dropdown */
+        .search-suggestions {
+            position: absolute;
+            top: 100%; /* Position below the search input */
+            left: 0;
+            right: 0;
+            background-color: #1a2b47; /* Darker background for suggestions */
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            max-height: 200px;
+            overflow-y: auto;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            z-index: 100; /* Ensure it's above other content */
+            display: none; /* Hidden by default */
+        }
+
+        .search-suggestions.active {
+            display: block;
+        }
+
+        .search-suggestions li {
+            padding: 0.8rem 1rem;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .search-suggestions li:last-child {
+            border-bottom: none;
+        }
+
+        .search-suggestions li:hover, .search-suggestions li.selected {
+            background-color: #00BFA6; /* Highlight on hover/selection */
+        }
+
+        /* Main content wrapper */
         .content-wrapper {
-            flex: 1; /* Allows main content to grow and push footer down */
-            max-width: 1200px; /* Increased max-width for container */
+            flex: 1;
+            max-width: 1200px;
             margin: 2rem auto;
-            padding: 0 2rem; /* Add padding to sides */
-            width: 100%; /* Ensure it takes full width within max-width */
-            box-sizing: border-box; /* Include padding in element's total width and height */
+            padding: 0 2rem;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         /* Container for left/right sections */
         .container {
             display: flex;
             flex-wrap: wrap;
-            gap: 3rem; /* Increased gap between left/right sections */
-            justify-content: center; /* Center content when it wraps */
+            gap: 3rem;
+            justify-content: center;
         }
 
         .left {
-            flex: 0 0 300px; /* Fixed width for left column on larger screens */
+            flex: 0 0 300px;
             text-align: center;
-            padding-right: 2rem; /* Add some padding to the right of the left column */
+            padding-right: 2rem;
             box-sizing: border-box;
         }
 
         .right {
-            flex: 1; /* Right column takes remaining space */
-            min-width: 350px; /* Ensure content doesn't get too squished */
-            padding-left: 2rem; /* Add some padding to the left of the right column */
+            flex: 1;
+            min-width: 350px;
+            padding-left: 2rem;
             box-sizing: border-box;
         }
 
-        /* Profile Picture - (b) Increased size */
+        /* Profile Picture */
         .profile-pic {
-            width: 250px; /* Increased size for image */
-            height: 250px; /* Increased size for image */
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid #0A192F; /* Slightly thicker border */
+            border: 5px solid #0A192F;
             object-position: center top;
             background-color: #eaeaea;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Stronger subtle shadow */
-            margin-bottom: 1.5rem; /* Space below image */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            margin-bottom: 1.5rem;
         }
 
-        /* Social Buttons - (c) Styling for social buttons */
+        /* Social Buttons */
         .socials {
             display: flex;
-            flex-direction: column; /* Stack buttons vertically */
-            gap: 0.8rem; /* Space between buttons */
-            margin-top: 1.5rem; /* Space above social buttons */
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
         }
 
         .social-button {
-            display: inline-flex; /* Use inline-flex to align icon and text */
-            align-items: center; /* Vertically center icon and text */
-            justify-content: center; /* Center content horizontally */
-            background-color: #eee; /* Light grey background */
-            color: #0A192F; /* Dark text color */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eee;
+            color: #0A192F;
             padding: 0.8rem 1.2rem;
             border: 1px solid #ccc;
-            border-radius: 8px; /* Slightly more rounded corners */
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem; /* Adjust button text size */
+            font-size: 1rem;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-            width: 100%; /* Ensure buttons take full width */
-            max-width: 250px; /* Limit button width */
-            margin: 0 auto; /* Center buttons within their container */
+            width: 100%;
+            max-width: 250px;
+            margin: 0 auto;
         }
 
         .social-button i {
-            margin-right: 0.8rem; /* Space between icon and text */
-            font-size: 1.1rem; /* Icon size */
+            margin-right: 0.8rem;
+            font-size: 1.1rem;
         }
 
         .social-button:hover {
-            background-color: #e0e0e0; /* Darker grey on hover */
-            transform: translateY(-2px); /* Subtle lift effect */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Shadow on hover */
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        /* Section Headings and General Text - (b) Increased text size */
+        /* Section Headings and General Text */
         h2 {
-            color: #0A192F; /* Dark Blue/Black */
-            border-bottom: 2px solid #00BFA6; /* Underline for section titles */
+            color: #0A192F;
+            border-bottom: 2px solid #00BFA6;
             padding-bottom: 0.5rem;
-            margin-top: 2.5rem; /* Space above h2 */
+            margin-top: 2.5rem;
             margin-bottom: 1.5rem;
-            font-size: 1.8rem; /* Increased h2 size */
+            font-size: 1.8rem;
         }
 
         p, ul li {
-            font-size: 1.1rem; /* (b) Increased general text size */
-            line-height: 1.7; /* Adjusted line height for readability */
-            margin-bottom: 1rem; /* Space between paragraphs/list items */
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
         }
 
         ul {
-            padding-left: 25px; /* Adjust padding for lists */
+            padding-left: 25px;
         }
 
-        /* Footer Styles - (d) Positioned at bottom of page/screen */
+        /* Footer Styles */
         footer {
             text-align: center;
-            padding: 1.5rem; /* Increased padding */
-            background: #0A192F; /* Dark Blue/Black */
+            padding: 1.5rem;
+            background: #0A192F;
             color: #fff;
-            margin-top: auto; /* Pushes footer to the bottom when content is short */
-            font-size: 0.95rem; /* Slightly larger footer text */
+            margin-top: auto;
+            font-size: 0.95rem;
         }
 
         /* Media Queries for Responsiveness */
         @media (max-width: 768px) {
             header {
-                flex-direction: column; /* Stack header items on smaller screens */
+                flex-direction: column;
                 padding: 1rem;
             }
 
             header h1 {
-                margin-bottom: 0.8rem; /* Space below title */
+                margin-bottom: 0.8rem;
                 font-size: 1.5rem;
             }
 
             .header-right {
-                flex-direction: column; /* Stack nav and search */
+                flex-direction: column;
                 gap: 1rem;
                 width: 100%;
             }
@@ -243,7 +281,7 @@
             }
 
             nav a {
-                margin: 0 0.6rem; /* Reduce nav item margin */
+                margin: 0 0.6rem;
                 font-size: 1rem;
             }
 
@@ -253,54 +291,54 @@
             }
 
             .search-input.active {
-                width: 80%; /* Adjust search input width for mobile */
+                width: 80%;
             }
 
             .content-wrapper {
-                padding: 0 1rem; /* Adjust padding for smaller screens */
+                padding: 0 1rem;
                 margin: 1.5rem auto;
             }
 
             .container {
-                flex-direction: column; /* Stack columns on smaller screens */
-                align-items: center; /* Center items when stacked */
-                gap: 2rem; /* Reduce gap */
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
             }
 
             .left, .right {
-                min-width: unset; /* Remove min-width for smaller screens */
-                width: 100%; /* Take full width */
-                padding: 0; /* Remove side padding for inner columns */
-                text-align: center; /* Center text for profile section */
+                min-width: unset;
+                width: 100%;
+                padding: 0;
+                text-align: center;
             }
 
             .profile-pic {
-                width: 200px; /* Slightly smaller on mobile */
+                width: 200px;
                 height: 200px;
-                margin-bottom: 1rem; /* Add space below profile pic when stacked */
+                margin-bottom: 1rem;
             }
 
             .socials {
-                gap: 0.6rem; /* Adjust gap for mobile buttons */
+                gap: 0.6rem;
             }
 
             .social-button {
-                padding: 0.6rem 1rem; /* Adjust button padding */
-                font-size: 0.9rem; /* Adjust button font size */
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
             }
 
             .social-button i {
-                font-size: 1rem; /* Adjust icon size */
+                font-size: 1rem;
             }
 
             h2 {
-                font-size: 1.6rem; /* Adjust h2 size for mobile */
+                font-size: 1.6rem;
                 margin-top: 1.5rem;
                 margin-bottom: 1rem;
             }
 
             p, ul li {
-                font-size: 1rem; /* Adjust general text size for mobile */
+                font-size: 1rem;
             }
         }
     </style>
@@ -317,6 +355,7 @@
             <div class="search-container">
                 <i class="fas fa-search search-icon" id="searchIcon"></i>
                 <input type="text" class="search-input" id="searchInput" placeholder="Search...">
+                <ul class="search-suggestions" id="searchResults"></ul>
             </div>
         </div>
     </header>
@@ -345,15 +384,15 @@
                 </div>
             </div>
             <div class="right">
-                <h2>About Me</h2>
+                <h2 id="about-me">About Me</h2>
                 <p>I am Abhishek P, currently pursuing B.Tech CSE (AIML) at PES University, passionate about machine learning, cybersecurity, and building impactful software solutions. I love contributing to projects, research, and participating in hackathons while maintaining strong academic discipline.</p>
-                <h2>Skills</h2>
+                <h2 id="skills">Skills</h2>
                 <ul>
                     <li>Python (proficient), Java (intermediate), C/C++ (moderate), R (basic)</li>
                     <li>HTML, CSS, JavaScript, MERN stack</li>
                     <li>SQL</li>
                 </ul>
-                <h2>Education</h2>
+                <h2 id="education">Education</h2>
                 <ul>
                     <li><strong>PES University</strong>, Bengaluru – B.Tech CSE (AIML) – 2027</li>
                     <li><strong>Base PU College</strong>, Bengaluru – II PUC (PCMC) – May 2023, 94.5%</li>
@@ -368,14 +407,165 @@
     </footer>
 
     <script>
-        // JavaScript for search bar functionality
-        document.getElementById('searchIcon').addEventListener('click', function() {
-            const searchInput = document.getElementById('searchInput');
+        // Define the search index for all pages
+        const searchIndex = [
+            // Home Page (index.html)
+            { title: "About Me", keywords: "Abhishek P, B.Tech CSE AIML, PES University, machine learning, cybersecurity, software solutions, projects, research, hackathons, academics", url: "index.html#about-me" },
+            { title: "Skills", keywords: "Python, Java, C++, R, HTML, CSS, JavaScript, MERN stack, SQL", url: "index.html#skills" },
+            { title: "Education", keywords: "PES University, Base PU College, Bishop Cotton Boys’ School, B.Tech CSE AIML, II PUC, ICSE X", url: "index.html#education" },
+            
+            // Achievements Page (achievements.html)
+            { title: "Key Achievements", keywords: "achievements, awards, competitions, hackathons, academics", url: "achievements.html#key-achievements" },
+            { title: "Prakalp (Pioneer-24)", keywords: "Prakalp, Pioneer-24, National Level Project Competition, KITCoE Kolhapur, 2nd Runner-Up", url: "achievements.html#prakalp" },
+            { title: "Math Day 2024 (SAMKALANAM)", keywords: "Math Day, SAMKALANAM, Treasure Hunt, PES University, 1st Runner-Up", url: "achievements.html#math-day" },
+            { title: "Good Coder Competition (GCC) Hackathon", keywords: "Good Coder Competition, GCC, Hackathon, PES University, 14th rank", url: "achievements.html#gcc-hackathon" },
+            { title: "Academics (Achievements)", keywords: "Academics, ICSE Class X, II PUC PCMC, 95.16%, 94.5%", url: "achievements.html#academics" },
+
+            // Research & Projects Page (research.html)
+            { title: "Research", keywords: "research, Radiation Pollution Study, Tektronix RSA306, Bengaluru, WHO", url: "research.html#research-section" },
+            { title: "Radiation Pollution Study", keywords: "Radiation Pollution Study, Tektronix RSA306, Bengaluru, WHO, linear regression", url: "research.html#radiation-pollution-study" },
+            { title: "Projects", keywords: "projects, Fitium, MedSnap", url: "research.html#projects-section" },
+            { title: "Fitium", keywords: "Fitium, Python, fitness monitoring, heart rate, BMI, health analysis", url: "research.html#fitium" },
+            { title: "MedSnap", keywords: "MedSnap, MERN stack, hospital management system, QR-based patient login, MongoDB, modern APIs", url: "research.html#medsnap" }
+        ];
+
+        const searchIcon = document.getElementById('searchIcon');
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        let selectedSuggestionIndex = -1; // To keep track of selected suggestion for keyboard navigation
+
+        // Toggle search input visibility
+        searchIcon.addEventListener('click', function() {
             searchInput.classList.toggle('active');
             if (searchInput.classList.contains('active')) {
-                searchInput.focus(); // Focus on the input when it becomes active
+                searchInput.focus();
             } else {
-                searchInput.value = ''; // Clear input when it hides
+                searchInput.value = '';
+                searchResults.classList.remove('active'); // Hide suggestions when closing
+                searchResults.innerHTML = ''; // Clear suggestions
+                selectedSuggestionIndex = -1;
+            }
+        });
+
+        // Handle input for suggestions
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value.toLowerCase();
+            searchResults.innerHTML = ''; // Clear previous suggestions
+            selectedSuggestionIndex = -1; // Reset selection
+
+            if (query.length > 1) { // Start suggesting after 1 character
+                const filteredResults = searchIndex.filter(item => 
+                    item.title.toLowerCase().includes(query) || 
+                    item.keywords.toLowerCase().includes(query)
+                );
+
+                if (filteredResults.length > 0) {
+                    filteredResults.forEach((item, index) => {
+                        const li = document.createElement('li');
+                        li.textContent = item.title;
+                        li.dataset.url = item.url; // Store URL for navigation
+                        li.addEventListener('click', function() {
+                            navigateToResult(item.url);
+                        });
+                        searchResults.appendChild(li);
+                    });
+                    searchResults.classList.add('active'); // Show suggestions
+                } else {
+                    searchResults.classList.remove('active'); // Hide if no results
+                }
+            } else {
+                searchResults.classList.remove('active'); // Hide if query is too short
+            }
+        });
+
+        // Handle keyboard navigation (Arrow Up/Down, Enter)
+        searchInput.addEventListener('keydown', function(event) {
+            const suggestions = searchResults.querySelectorAll('li');
+            if (suggestions.length === 0) return;
+
+            if (event.key === 'ArrowDown') {
+                event.preventDefault(); // Prevent cursor movement in input
+                if (selectedSuggestionIndex < suggestions.length - 1) {
+                    if (selectedSuggestionIndex !== -1) {
+                        suggestions[selectedSuggestionIndex].classList.remove('selected');
+                    }
+                    selectedSuggestionIndex++;
+                    suggestions[selectedSuggestionIndex].classList.add('selected');
+                    // Scroll into view if needed
+                    suggestions[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
+                }
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault(); // Prevent cursor movement in input
+                if (selectedSuggestionIndex > 0) {
+                    suggestions[selectedSuggestionIndex].classList.remove('selected');
+                    selectedSuggestionIndex--;
+                    suggestions[selectedSuggestionIndex].classList.add('selected');
+                    // Scroll into view if needed
+                    suggestions[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
+                } else if (selectedSuggestionIndex === 0) {
+                    suggestions[selectedSuggestionIndex].classList.remove('selected');
+                    selectedSuggestionIndex = -1; // Go back to input
+                }
+            } else if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission
+                if (selectedSuggestionIndex !== -1) {
+                    // Navigate to the selected suggestion
+                    navigateToResult(suggestions[selectedSuggestionIndex].dataset.url);
+                } else {
+                    // If no suggestion is selected, perform a basic search (e.g., navigate to first match or a search results page)
+                    // For now, let's just navigate to the first suggestion if available, or do nothing.
+                    const query = searchInput.value.toLowerCase();
+                    const firstMatch = searchIndex.find(item => 
+                        item.title.toLowerCase().includes(query) || 
+                        item.keywords.toLowerCase().includes(query)
+                    );
+                    if (firstMatch) {
+                        navigateToResult(firstMatch.url);
+                    }
+                }
+            }
+        });
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!searchIcon.contains(event.target) && !searchInput.contains(event.target) && !searchResults.contains(event.target)) {
+                searchResults.classList.remove('active');
+                selectedSuggestionIndex = -1;
+            }
+        });
+
+        // Function to navigate to the result
+        function navigateToResult(url) {
+            window.location.href = url;
+            // Clear search input and hide suggestions after navigation
+            searchInput.value = '';
+            searchResults.classList.remove('active');
+            searchResults.innerHTML = '';
+            selectedSuggestionIndex = -1;
+        }
+
+        // Handle hash changes for scrolling to section on the same page
+        window.addEventListener('hashchange', function() {
+            const id = window.location.hash.substring(1); // Get ID without '#'
+            if (id) {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+
+        // Initial scroll if page loaded with a hash
+        window.addEventListener('load', function() {
+            const id = window.location.hash.substring(1);
+            if (id) {
+                const element = document.getElementById(id);
+                if (element) {
+                    // Use a slight delay to ensure layout is stable
+                    setTimeout(() => {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
             }
         });
     </script>
