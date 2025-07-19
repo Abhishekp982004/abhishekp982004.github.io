@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Achievements | Abhishek P</title>
-<!-- Favicon -->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -295,6 +294,17 @@
         <i class="fas fa-search search-icon-header" id="searchIconHeader"></i>
     </div>
 </header>
+
+<div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay-content">
+        <input type="text" class="search-input-overlay" id="searchInputOverlay" placeholder="Search your portfolio...">
+        <ul class="search-suggestions-overlay" id="searchResultsOverlay"></ul>
+        <button class="search-cancel-btn" id="searchCancelBtn">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+
 <main class="content-wrapper">
     <section>
         <h2 id="key-achievements">Key Achievements</h2>
@@ -311,7 +321,7 @@
 </footer>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('Search script initialized.'); // Debugging log
+        console.log('Search script initialized on achievements.html'); // Debugging log
         // Define the search index for all pages with content snippets
         const searchIndex = [
             // Home Page (index.html)
