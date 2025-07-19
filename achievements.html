@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Achievements | Abhishek P</title>
 <!-- Favicon -->
-<link rel="icon" href="favicon.png" type="image/png"> <!-- Add your favicon.png here -->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
@@ -81,7 +81,7 @@
     }
 
     .search-input {
-        width: 0; /* Hidden by default */
+        width: 0;
         padding: 0;
         border: none;
         border-bottom: 2px solid #00BFA6;
@@ -90,19 +90,57 @@
         font-size: 1rem;
         transition: width 0.3s ease, padding 0.3s ease;
         opacity: 0;
-        pointer-events: none; /* Disable interaction when hidden */
+        pointer-events: none;
     }
 
     .search-input.active {
-        width: 180px; /* Visible width */
+        width: 180px;
         padding: 0.5rem 0.8rem;
         opacity: 1;
-        pointer-events: auto; /* Enable interaction when active */
+        pointer-events: auto;
     }
 
-    /* Placeholder color for search input */
     .search-input::placeholder {
         color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Search Suggestions Dropdown */
+    .search-suggestions {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #1a2b47;
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        max-height: 200px;
+        overflow-y: auto;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        z-index: 100;
+        display: none;
+    }
+
+    .search-suggestions.active {
+        display: block;
+    }
+
+    .search-suggestions li {
+        padding: 0.8rem 1rem;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .search-suggestions li:last-child {
+        border-bottom: none;
+    }
+
+    .search-suggestions li:hover, .search-suggestions li.selected {
+        background-color: #00BFA6;
     }
 
     /* Main content wrapper */
@@ -132,12 +170,12 @@
 
     ul {
         line-height: 1.8;
-        font-size: 1.1rem; /* Increased text size */
+        font-size: 1.1rem;
         padding-left: 25px;
     }
 
     ul li {
-        margin-bottom: 1rem; /* Space between list items */
+        margin-bottom: 1rem;
     }
 
     /* Footer Styles */
@@ -221,17 +259,18 @@
         <div class="search-container">
             <i class="fas fa-search search-icon" id="searchIcon"></i>
             <input type="text" class="search-input" id="searchInput" placeholder="Search...">
+            <ul class="search-suggestions" id="searchResults"></ul>
         </div>
     </div>
 </header>
 <main class="content-wrapper">
     <section>
-        <h2>Key Achievements</h2>
+        <h2 id="key-achievements">Key Achievements</h2>
         <ul>
-            <li><strong>Prakalp (Pioneer-24)</strong>: Secured 2nd Runner-Up in a National Level Project/Innovation/Startup Presentation Competition organized by KITCoE, Kolhapur.</li>
-            <li><strong>Math Day 2024 (SAMKALANAM)</strong>: 1st Runner-Up in the Treasure Hunt event organized by the Science and Humanities Department, PES University.</li>
-            <li><strong>Good Coder Competition (GCC) Hackathon</strong>: Secured 14th rank among 342+ participants in a hackathon conducted by the Science and Humanities Department, PES University, recognizing the top 50 participants.</li>
-            <li><strong>Academics</strong>: ICSE Class X (95.16%), II PUC PCMC (94.5%).</li>
+            <li id="prakalp"><strong>Prakalp (Pioneer-24)</strong>: Secured 2nd Runner-Up in a National Level Project/Innovation/Startup Presentation Competition organized by KITCoE, Kolhapur.</li>
+            <li id="math-day"><strong>Math Day 2024 (SAMKALANAM)</strong>: 1st Runner-Up in the Treasure Hunt event organized by the Science and Humanities Department, PES University.</li>
+            <li id="gcc-hackathon"><strong>Good Coder Competition (GCC) Hackathon</strong>: Secured 14th rank among 342+ participants in a hackathon conducted by the Science and Humanities Department, PES University, recognizing the top 50 participants.</li>
+            <li id="academics"><strong>Academics</strong>: ICSE Class X (95.16%), II PUC PCMC (94.5%).</li>
         </ul>
     </section>
 </main>
@@ -239,14 +278,164 @@
     &copy; 2025 Abhishek P | Portfolio
 </footer>
 <script>
-    // JavaScript for search bar functionality
-    document.getElementById('searchIcon').addEventListener('click', function() {
-        const searchInput = document.getElementById('searchInput');
+    // Define the search index for all pages
+    const searchIndex = [
+        // Home Page (index.html)
+        { title: "About Me", keywords: "Abhishek P, B.Tech CSE AIML, PES University, machine learning, cybersecurity, software solutions, projects, research, hackathons, academics", url: "index.html#about-me" },
+        { title: "Skills", keywords: "Python, Java, C++, R, HTML, CSS, JavaScript, MERN stack, SQL", url: "index.html#skills" },
+        { title: "Education", keywords: "PES University, Base PU College, Bishop Cotton Boys’ School, B.Tech CSE AIML, II PUC, ICSE X", url: "index.html#education" },
+        
+        // Achievements Page (achievements.html)
+        { title: "Key Achievements", keywords: "achievements, awards, competitions, hackathons, academics", url: "achievements.html#key-achievements" },
+        { title: "Prakalp (Pioneer-24)", keywords: "Prakalp, Pioneer-24, National Level Project Competition, KITCoE Kolhapur, 2nd Runner-Up", url: "achievements.html#prakalp" },
+        { title: "Math Day 2024 (SAMKALANAM)", keywords: "Math Day, SAMKALANAM, Treasure Hunt, PES University, 1st Runner-Up", url: "achievements.html#math-day" },
+        { title: "Good Coder Competition (GCC) Hackathon", keywords: "Good Coder Competition, GCC, Hackathon, PES University, 14th rank", url: "achievements.html#gcc-hackathon" },
+        { title: "Academics (Achievements)", keywords: "Academics, ICSE Class X, II PUC PCMC, 95.16%, 94.5%", url: "achievements.html#academics" },
+
+        // Research & Projects Page (research.html)
+        { title: "Research", keywords: "research, Radiation Pollution Study, Tektronix RSA306, Bengaluru, WHO", url: "research.html#research-section" },
+        { title: "Radiation Pollution Study", keywords: "Radiation Pollution Study, Tektronix RSA306, Bengaluru, WHO, linear regression", url: "research.html#radiation-pollution-study" },
+        { title: "Projects", keywords: "projects, Fitium, MedSnap", url: "research.html#projects-section" },
+        { title: "Fitium", keywords: "Fitium, Python, fitness monitoring, heart rate, BMI, health analysis", url: "research.html#fitium" },
+        { title: "MedSnap", keywords: "MedSnap, MERN stack, hospital management system, QR-based patient login, MongoDB, modern APIs", url: "research.html#medsnap" }
+    ];
+
+    const searchIcon = document.getElementById('searchIcon');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    let selectedSuggestionIndex = -1; // To keep track of selected suggestion for keyboard navigation
+
+    // Toggle search input visibility
+    searchIcon.addEventListener('click', function() {
         searchInput.classList.toggle('active');
         if (searchInput.classList.contains('active')) {
-            searchInput.focus(); // Focus on the input when it becomes active
+            searchInput.focus();
         } else {
-            searchInput.value = ''; // Clear input when it hides
+            searchInput.value = '';
+            searchResults.classList.remove('active'); // Hide suggestions when closing
+            searchResults.innerHTML = ''; // Clear suggestions
+            selectedSuggestionIndex = -1;
+        }
+    });
+
+    // Handle input for suggestions
+    searchInput.addEventListener('input', function() {
+        const query = searchInput.value.toLowerCase();
+        searchResults.innerHTML = ''; // Clear previous suggestions
+        selectedSuggestionIndex = -1; // Reset selection
+
+        if (query.length > 1) { // Start suggesting after 1 character
+            const filteredResults = searchIndex.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.keywords.toLowerCase().includes(query)
+            );
+
+            if (filteredResults.length > 0) {
+                filteredResults.forEach((item, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = item.title;
+                    li.dataset.url = item.url; // Store URL for navigation
+                    li.addEventListener('click', function() {
+                        navigateToResult(item.url);
+                    });
+                    searchResults.appendChild(li);
+                });
+                searchResults.classList.add('active'); // Show suggestions
+            } else {
+                searchResults.classList.remove('active'); // Hide if no results
+            }
+        } else {
+            searchResults.classList.remove('active'); // Hide if query is too short
+        }
+    });
+
+    // Handle keyboard navigation (Arrow Up/Down, Enter)
+    searchInput.addEventListener('keydown', function(event) {
+        const suggestions = searchResults.querySelectorAll('li');
+        if (suggestions.length === 0) return;
+
+        if (event.key === 'ArrowDown') {
+            event.preventDefault(); // Prevent cursor movement in input
+            if (selectedSuggestionIndex < suggestions.length - 1) {
+                if (selectedSuggestionIndex !== -1) {
+                    suggestions[selectedSuggestionIndex].classList.remove('selected');
+                }
+                selectedSuggestionIndex++;
+                suggestions[selectedSuggestionIndex].classList.add('selected');
+                // Scroll into view if needed
+                suggestions[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
+            }
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault(); // Prevent cursor movement in input
+            if (selectedSuggestionIndex > 0) {
+                suggestions[selectedSuggestionIndex].classList.remove('selected');
+                selectedSuggestionIndex--;
+                suggestions[selectedSuggestionIndex].classList.add('selected');
+                // Scroll into view if needed
+                suggestions[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
+            } else if (selectedSuggestionIndex === 0) {
+                suggestions[selectedSuggestionIndex].classList.remove('selected');
+                selectedSuggestionIndex = -1; // Go back to input
+            }
+        } else if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent form submission
+            if (selectedSuggestionIndex !== -1) {
+                // Navigate to the selected suggestion
+                navigateToResult(suggestions[selectedSuggestionIndex].dataset.url);
+            } else {
+                // If no suggestion is selected, perform a basic search (e.g., navigate to first match or a search results page)
+                const query = searchInput.value.toLowerCase();
+                const firstMatch = searchIndex.find(item => 
+                    item.title.toLowerCase().includes(query) || 
+                    item.keywords.toLowerCase().includes(query)
+                );
+                if (firstMatch) {
+                    navigateToResult(firstMatch.url);
+                }
+            }
+        }
+    });
+
+    // Hide suggestions when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!searchIcon.contains(event.target) && !searchInput.contains(event.target) && !searchResults.contains(event.target)) {
+            searchResults.classList.remove('active');
+            selectedSuggestionIndex = -1;
+        }
+    });
+
+    // Function to navigate to the result
+    function navigateToResult(url) {
+        window.location.href = url;
+        // Clear search input and hide suggestions after navigation
+        searchInput.value = '';
+        searchResults.classList.remove('active');
+        searchResults.innerHTML = '';
+        selectedSuggestionIndex = -1;
+    }
+
+    // Handle hash changes for scrolling to section on the same page
+    window.addEventListener('hashchange', function() {
+        const id = window.location.hash.substring(1); // Get ID without '#'
+        if (id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    });
+
+    // Initial scroll if page loaded with a hash
+    window.addEventListener('load', function() {
+        const id = window.location.hash.substring(1);
+        if (id) {
+            const element = document.getElementById(id);
+            if (element) {
+                // Use a slight delay to ensure layout is stable
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
         }
     });
 </script>
