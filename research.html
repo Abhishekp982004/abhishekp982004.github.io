@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Research & Projects | Abhishek P</title>
+<!-- Favicon -->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -332,6 +333,7 @@
     </div>
 </header>
 
+<!-- Search Overlay -->
 <div class="search-overlay" id="searchOverlay">
     <div class="search-overlay-content">
         <input type="text" class="search-input-overlay" id="searchInputOverlay" placeholder="Search your portfolio...">
@@ -568,7 +570,7 @@
         // Function to navigate to the result
         function navigateToResult(url) {
             window.location.href = url;
-            
+            // Clear search input and hide suggestions after navigation
             searchInputOverlay.value = '';
             searchResultsOverlay.classList.remove('active');
             searchResultsOverlay.innerHTML = '';
