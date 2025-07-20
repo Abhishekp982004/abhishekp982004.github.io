@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,6 +162,23 @@
             background-color: #FFFF00; /* Yellow highlight */
             color: #333;
             padding: 2px 0;
+        }
+
+        .search-cancel-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem; /* Larger cancel icon */
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .search-cancel-btn:hover {
+            color: #00BFA6;
         }
 
         /* Main content wrapper */
@@ -374,11 +392,11 @@
 </head>
 <body>
     <header>
-        <h1>Achievements</h1>
+        <h1>Abhishek P</h1>
         <div class="header-right">
             <nav>
-                <a href="index.html">Home</a>
                 <a href="research.html">Research | Projects</a>
+                <a href="achievements.html">Achievements</a>
                 <a href="resume.html">Resume</a>
             </nav>
             <i class="fas fa-search search-icon-header" id="searchIconHeader"></i>
@@ -397,30 +415,58 @@
     </div>
 
     <main class="content-wrapper">
-        <section>
-            <h2 id="key-achievements">Key Achievements</h2>
-            <ul>
-                <li id="prakalp"><strong>Prakalp (Pioneer-24)</strong>: 2nd Runner-Up at Prakalp, Project/Innovation/Startup Presentation Competition, part of Pioneer-2024, a National Level Technical Event organized by KITCoE, Kolhapur. The event saw over 160 teams. You can find the <a href="1709131575071-2.pdf" target="_blank" style="color: #00BFA6; text-decoration: underline;">certificate</a>.</li>
-                <li id="math-day"><strong>Math Day 2024 (SAMKALANAM)</strong>: 1st Runner-Up in Treasure Hunt of SAMKALANAM-2024 as part of Math Day-2024 celebrations organized by Science and Humanities Department (S&H), PES University. You can find the <a href="1723658434955.pdf" target="_blank" style="color: #00BFA6; text-decoration: underline;">certificate</a>.</li>
-                <li id="gcc-hackathon"><strong>Good Coder Competition (GCC) Hackathon</strong>: Secured 14th rank in Good Coder Competition (GCC) Hackathon at PES University organized by the Science and Humanities Department (S&H). The Competition saw over 342 registrations and the top 50 participants were recognized. You can find the <a href="1715742236181.pdf" target="_blank" style="color: #00BFA6; text-decoration: underline;">badge</a>.</li>
-                <li id="certifications"><strong>Certifications</strong>:
-                    <ul>
-                        <li><a href="1745390809371.pdf" target="_blank" style="color: #00BFA6; text-decoration: underline;">"Problem Solving"</a></li>
-                        <li><a href="1722517426178.jpeg" target="_blank" style="color: #00BFA6; text-decoration: underline;">"Career Essentials in Cybersecurity by Microsoft and LinkedIn"</a></li>
-                        <li><a href="1722490846000.jpeg" target="_blank" style="color: #00BFA6; text-decoration: underline;">"Career Essentials in Data Analysis by Microsoft and LinkedIn"</a></li>
-                        <li><a href="1722261703928.jpeg" target="_blank" style="color: #00BFA6; text-decoration: underline;">"Career Essentials in Generative AI by Microsoft and LinkedIn"</a></li>
-                    </ul>
-                </li>
-                <li id="academics"><strong>Academics</strong>: ICSE Class X (95.16%), II PUC PCMC (94.5%).</li>
-            </ul>
-        </section>
+        <div class="container">
+            <div class="left">
+                <img src="IMG-20221225-WA0085.jpg" alt="Profile Photo" class="profile-pic">
+                <h2>Abhishek P</h2>
+                <div class="socials">
+                    <a href="https://www.linkedin.com/in/abhishek-p-07724b217" target="_blank" class="social-button">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/Abhishekp982004" target="_blank" class="social-button">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="mailto:982004abhishek@gmail.com" class="social-button">
+                        <i class="fas fa-envelope"></i> Personal Mail
+                    </a>
+                    <a href="mailto:pes2ug23am002@pesu.pes.edu" class="social-button">
+                        <i class="fas fa-university"></i> College Mail
+                    </a>
+                    <a href="tel:+919481331825" class="social-button">
+                        <i class="fas fa-phone"></i> Call: (+91) 94813 31825
+                    </a>
+                </div>
+            </div>
+            <div class="right">
+                <h2 id="about-me">About Me</h2>
+                <p>Hi!, I'm currently persuing Bachelor's in Technology in Computer Science and Engineering (specializing in Artificial Intelligence and Machine Learning) at <a href="https://pes.edu/" target="_blank" style="color: #00BFA6; text-decoration: underline;">PES University</a>. 
+                I am passionate about machine learning, cybersecurity, and building impactful software solutions. I love contributing to projects, research, and participating in hackathons, you can find my <a href="research.html" style="color: #00BFA6; text-decoration: underline;">research | projects</a> and <a href="resume.html" style="color: #00BFA6; text-decoration: underline;">resume</a>.</p>
+                
+                <h2 id="skills">Skills</h2>
+                <ul>
+                    <li>Python (proficient), Java (intermediate), C/C++ (moderate), R (basic)</li>
+                    <li>HTML, CSS, JavaScript, MERN stack</li>
+                    <li>SQL</li>
+                    <li>Machine Learning: PyTorch, pandas, numpy, TensorFlow</li>
+                </ul>
+                
+                <h2 id="education">Education</h2>
+                <ul>
+                    <li><strong>PES University</strong> | Bengaluru, India<br>Bachelor of Technology in Computer Science and Engineering (B.Tech CSE-AI&ML)</li>
+                    <li><strong>Base PU College, RNR</strong> | Bengaluru, India<br>Pre University (PCMc)</li>
+                    <li><strong>Bishop Cotton Boys' School</strong> | Bengaluru, India<br>KG to Class X (CISCE)</li>
+                </ul>
+            </div>
+        </div>
     </main>
+
     <footer>
-        &copy; 2025 Abhishek P | Portfolio
+        &copy; 2025 Abhishek P
     </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Search script initialized on achievements.html'); // Debugging log
+            console.log('Search script initialized on index.html'); // Debugging log
             // Define the search index for all pages with content snippets
             const searchIndex = [
                 // Home Page (index.html)
@@ -448,27 +494,22 @@
                 },
                 { 
                     title: "Prakalp (Pioneer-24)", 
-                    contentSnippet: "2nd Runner-Up at Prakalp, Project/Innovation/Startup Presentation Competition, part of Pioneer-2024, a National Level Technical Event organized by KITCoE, Kolhapur. The event saw over 160 teams. You can find the certificate.", 
+                    contentSnippet: "Secured 2nd Runner-Up in a National Level Project/Innovation/Startup Presentation Competition organized by KITCoE, Kolhapur.", 
                     url: "achievements.html#prakalp" 
                 },
                 { 
                     title: "Math Day 2024 (SAMKALANAM)", 
-                    contentSnippet: "1st Runner-Up in Treasure Hunt of SAMKALANAM-2024 as part of Math Day-2024 celebrations organized by Science and Humanities Department (S&H), PES University. You can find the certificate.", 
+                    contentSnippet: "1st Runner-Up in the Treasure Hunt event organized by the Science and Humanities Department, PES University.", 
                     url: "achievements.html#math-day" 
                 },
                 { 
                     title: "Good Coder Competition (GCC) Hackathon", 
-                    contentSnippet: "Secured 14th rank in Good Coder Competition (GCC) Hackathon at PES University organized by the Science and Humanities Department (S&H). The Competition saw over 342 registrations and the top 50 participants were recognized. You can find the badge.", 
+                    contentSnippet: "Secured 14th rank among 342+ participants in a hackathon conducted by the Science and Humanities Department, PES University, recognizing the top 50 participants.", 
                     url: "achievements.html#gcc-hackathon" 
                 },
                 { 
-                    title: "Certifications", 
-                    contentSnippet: "Certifications: Problem Solving, Career Essentials in Cybersecurity by Microsoft and LinkedIn, Career Essentials in Data Analysis by Microsoft and LinkedIn, Career Essentials in Generative AI by Microsoft and LinkedIn.", 
-                    url: "achievements.html#certifications" 
-                },
-                { 
                     title: "Academics (Achievements)", 
-                    contentSnippet: "Academics: ICSE Class X (95.16%), II PUC PCMC (94.5%).", 
+                    contentSnippet: "ICSE Class X (95.16%), II PUC PCMC (94.5%).", 
                     url: "achievements.html#academics" 
                 },
 
@@ -493,161 +534,161 @@
                     contentSnippet: "Fire hazards pose a serious threat to life and property, making early detection and rapid response essential. This project presents a smart Fire Alarm System that integrates multiple sensors to detect potential fire risks in real time. The system utilizes a Gas/Smoke Sensor(MQ-2), Temperature Sensor(LM35CAZ) and Flame Sensor to monitor environmental conditions and identify fire-related anomalies. When a fire hazard is detected, the system triggers an alarm(Buzzer and LED Light indication) and sends instant alerts to the system with a UI website which will intimate all the real time values that the system measures and cautions the user in case of a Fire. Additionally real time Temperature value(in °C) and Flame, Gas indication(Boolean) will be displayed on an inbuilt LCD Display. It can be run on a 9V battery(can also run by the power supplied by the system when connected). We have also incorporated detailed analysis using multiple graphs(Temperature, Gas values plotted against time-utilizes latest 100 data points) based on various data points collected during fires which helps in prediction and analysis of potential fire risks which can be avoided in the future. We have developed an eco-friendly, light, highly durable and cost-efficient model with a minimalistic design. This model is tested multiple times under all possible circumstances with an excellent accuracy and precision. This model is highly scalable and IoT-enabled solution for fire detection, improving response times and minimalizing potential damage in residential and commercial spaces. This model breaks the barriers and drawbacks of traditional Fire Alarm Systems through modern technological incorporations. This model can also be used to alert remote users through a Wi-Fi module(ESP8266/ESP32) or a GSM module making it highly flexible. You can find the overview.", 
                     url: "research.html#modern-fire-alarm-system" 
                 }
+            ];
+
+            const searchIconHeader = document.getElementById('searchIconHeader');
+            const searchOverlay = document.getElementById('searchOverlay');
+            const searchInputOverlay = document.getElementById('searchInputOverlay');
+            const searchResultsOverlay = document.getElementById('searchResultsOverlay');
+            const searchCancelBtn = document.getElementById('searchCancelBtn');
+            let selectedSuggestionIndex = -1;
+
+            // Function to highlight the search query in text
+            function highlightMatch(text, query) {
+                if (!query) return text;
+                const regex = new RegExp(`(${query})`, 'gi'); // Case-insensitive global search
+                return text.replace(regex, `<span class="search-highlight">$1</span>`);
             }
-        ];
 
-        const searchIconHeader = document.getElementById('searchIconHeader');
-        const searchOverlay = document.getElementById('searchOverlay');
-        const searchInputOverlay = document.getElementById('searchInputOverlay');
-        const searchResultsOverlay = document.getElementById('searchResultsOverlay');
-        const searchCancelBtn = document.getElementById('searchCancelBtn');
-        let selectedSuggestionIndex = -1;
+            // Open search overlay
+            searchIconHeader.addEventListener('click', function() {
+                searchOverlay.classList.add('active');
+                searchInputOverlay.focus();
+                // Prevent scrolling when overlay is active
+                document.body.style.overflow = 'hidden'; 
+            });
 
-        // Function to highlight the search query in text
-        function highlightMatch(text, query) {
-            if (!query) return text;
-            const regex = new RegExp(`(${query})`, 'gi'); // Case-insensitive global search
-            return text.replace(regex, `<span class="search-highlight">$1</span>`);
-        }
-
-        // Open search overlay
-        searchIconHeader.addEventListener('click', function() {
-            searchOverlay.classList.add('active');
-            searchInputOverlay.focus();
-            document.body.style.overflow = 'hidden'; 
-        });
-
-        // Close search overlay
-        searchCancelBtn.addEventListener('click', function() {
-            searchOverlay.classList.remove('active');
-            searchInputOverlay.value = '';
-            searchResultsOverlay.innerHTML = '';
-            selectedSuggestionIndex = -1;
-            document.body.style.overflow = '';
-        });
-
-        // Handle input for suggestions in overlay
-        searchInputOverlay.addEventListener('input', function() {
-            const query = searchInputOverlay.value.toLowerCase().trim();
-            searchResultsOverlay.innerHTML = '';
-            selectedSuggestionIndex = -1;
-
-            if (query.length > 1) {
-                const filteredResults = searchIndex.filter(item => 
-                    item.contentSnippet.toLowerCase().includes(query)
-                );
-
-                if (filteredResults.length > 0) {
-                    filteredResults.forEach((item, index) => {
-                        const li = document.createElement('li');
-                        li.innerHTML = highlightMatch(item.contentSnippet, query);
-                        li.dataset.url = item.url;
-                        li.addEventListener('click', function() {
-                            navigateToResult(item.url);
-                        });
-                        searchResultsOverlay.appendChild(li);
-                    });
-                    searchResultsOverlay.classList.add('active');
-                } else {
-                    searchResultsOverlay.classList.remove('active');
-                }
-            } else {
-                searchResultsOverlay.classList.remove('active');
-            }
-        });
-
-        // Handle keyboard navigation (Arrow Up/Down, Enter) for overlay
-        searchInputOverlay.addEventListener('keydown', function(event) {
-            const suggestions = searchResultsOverlay.querySelectorAll('li');
-            if (suggestions.length === 0) return;
-
-            if (event.key === 'ArrowDown') {
-                event.preventDefault();
-                if (selectedSuggestionIndex < suggestions.length - 1) {
-                    if (selectedSuggestionIndex !== -1) {
-                        suggestions[selectedSuggestionIndex].classList.remove('selected');
-                    }
-                    selectedSuggestionIndex++;
-                    suggestions[selectedSuggestionIndex].classList.add('selected');
-                    suggestions[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
-                }
-            } else if (event.key === 'ArrowUp') {
-                event.preventDefault();
-                if (selectedSuggestionIndex > 0) {
-                    suggestions[selectedSuggestionIndex].classList.remove('selected');
-                    selectedSuggestionIndex--;
-                    suggestions[selectedSuggestionIndex].classList.add('selected');
-                    suggestions[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
-                } else if (selectedSuggestionIndex === 0) {
-                    suggestions[selectedSuggestionIndex].classList.remove('selected');
-                    selectedSuggestionIndex = -1;
-                }
-            } else if (event.key === 'Enter') {
-                event.preventDefault();
-                if (selectedSuggestionIndex !== -1) {
-                    navigateToResult(suggestions[selectedSuggestionIndex].dataset.url);
-                } else {
-                    const query = searchInputOverlay.value.toLowerCase().trim();
-                    const firstMatch = searchIndex.find(item => 
-                        item.contentSnippet.toLowerCase().includes(query)
-                    );
-                    if (firstMatch) {
-                        navigateToResult(firstMatch.url);
-                    }
-                }
-            }
-        });
-
-        // Hide suggestions when clicking outside of the overlay content
-        document.addEventListener('click', function(event) {
-            const overlayContent = document.getElementById('searchOverlay').querySelector('.search-overlay-content');
-            if (!overlayContent.contains(event.target) && searchOverlay.classList.contains('active') && event.target !== searchIconHeader) {
+            // Close search overlay
+            searchCancelBtn.addEventListener('click', function() {
                 searchOverlay.classList.remove('active');
                 searchInputOverlay.value = '';
                 searchResultsOverlay.innerHTML = '';
                 selectedSuggestionIndex = -1;
-                document.body.style.overflow = '';
-            }
-        });
+                document.body.style.overflow = ''; // Restore scrolling
+            });
 
-        // Function to navigate to the result
-        function navigateToResult(url) {
-            window.location.href = url;
-            // Clear search input and hide suggestions after navigation
-            searchInputOverlay.value = '';
-            searchResultsOverlay.classList.remove('active');
-            searchResultsOverlay.innerHTML = '';
-            selectedSuggestionIndex = -1;
-            searchOverlay.classList.remove('active'); // Close overlay after navigation
-            document.body.style.overflow = ''; // Restore scrolling
-        }
+            // Handle input for suggestions in overlay
+            searchInputOverlay.addEventListener('input', function() {
+                const query = searchInputOverlay.value.toLowerCase().trim();
+                searchResultsOverlay.innerHTML = '';
+                selectedSuggestionIndex = -1;
 
-        // Handle hash changes for scrolling to section on the same page
-        window.addEventListener('hashchange', function() {
-            const id = window.location.hash.substring(1);
-            if (id) {
-                const element = document.getElementById(id);
-                if (element) {
-                    setTimeout(() => {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100);
+                if (query.length > 1) {
+                    const filteredResults = searchIndex.filter(item => 
+                        item.contentSnippet.toLowerCase().includes(query)
+                    );
+
+                    if (filteredResults.length > 0) {
+                        filteredResults.forEach((item, index) => {
+                            const li = document.createElement('li');
+                            li.innerHTML = highlightMatch(item.contentSnippet, query);
+                            li.dataset.url = item.url;
+                            li.addEventListener('click', function() {
+                                navigateToResult(item.url);
+                            });
+                            searchResultsOverlay.appendChild(li);
+                        });
+                        searchResultsOverlay.classList.add('active');
+                    } else {
+                        searchResultsOverlay.classList.remove('active');
+                    }
+                } else {
+                    searchResultsOverlay.classList.remove('active');
                 }
-            }
-        });
+            });
 
-        // Initial scroll if page loaded with a hash
-        window.addEventListener('load', function() {
-            const id = window.location.hash.substring(1);
-            if (id) {
-                const element = document.getElementById(id);
-                if (element) {
-                    setTimeout(() => {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100);
+            // Handle keyboard navigation (Arrow Up/Down, Enter) for overlay
+            searchInputOverlay.addEventListener('keydown', function(event) {
+                const suggestions = searchResultsOverlay.querySelectorAll('li');
+                if (suggestions.length === 0) return;
+
+                if (event.key === 'ArrowDown') {
+                    event.preventDefault();
+                    if (selectedSuggestionIndex < suggestions.length - 1) {
+                        if (selectedSuggestionIndex !== -1) {
+                            suggestions[selectedSuggestionIndex].classList.remove('selected');
+                        }
+                        selectedSuggestionIndex++;
+                        suggestions[selectedSuggestionIndex].classList.add('selected');
+                        suggestions[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
+                    }
+                } else if (event.key === 'ArrowUp') {
+                    event.preventDefault();
+                    if (selectedSuggestionIndex > 0) {
+                        suggestions[selectedSuggestionIndex].classList.remove('selected');
+                        selectedSuggestionIndex--;
+                        suggestions[selectedSuggestionIndex].classList.add('selected');
+                        suggestions[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
+                    } else if (selectedSuggestionIndex === 0) {
+                        suggestions[selectedSuggestionIndex].classList.remove('selected');
+                        selectedSuggestionIndex = -1;
+                    }
+                } else if (event.key === 'Enter') {
+                    event.preventDefault();
+                    if (selectedSuggestionIndex !== -1) {
+                        navigateToResult(suggestions[selectedSuggestionIndex].dataset.url);
+                    } else {
+                        const query = searchInputOverlay.value.toLowerCase().trim();
+                        const firstMatch = searchIndex.find(item => 
+                            item.contentSnippet.toLowerCase().includes(query)
+                        );
+                        if (firstMatch) {
+                            navigateToResult(firstMatch.url);
+                        }
+                    }
                 }
+            });
+
+            // Hide suggestions when clicking outside of the overlay content
+            document.addEventListener('click', function(event) {
+                const overlayContent = document.getElementById('searchOverlay').querySelector('.search-overlay-content');
+                if (!overlayContent.contains(event.target) && searchOverlay.classList.contains('active') && event.target !== searchIconHeader) {
+                    searchOverlay.classList.remove('active');
+                    searchInputOverlay.value = '';
+                    searchResultsOverlay.innerHTML = '';
+                    selectedSuggestionIndex = -1;
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Function to navigate to the result
+            function navigateToResult(url) {
+                window.location.href = url;
+                // Clear search input and hide suggestions after navigation
+                searchInputOverlay.value = '';
+                searchResultsOverlay.classList.remove('active');
+                searchResultsOverlay.innerHTML = '';
+                selectedSuggestionIndex = -1;
+                searchOverlay.classList.remove('active'); // Close overlay after navigation
+                document.body.style.overflow = ''; // Restore scrolling
             }
-        });
-    }); // End DOMContentLoaded
-</script>
+
+            // Handle hash changes for scrolling to section on the same page
+            window.addEventListener('hashchange', function() {
+                const id = window.location.hash.substring(1);
+                if (id) {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        setTimeout(() => {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
+                    }
+                }
+            });
+
+            // Initial scroll if page loaded with a hash
+            window.addEventListener('load', function() {
+                const id = window.location.hash.substring(1);
+                if (id) {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        setTimeout(() => {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
+                    }
+                }
+            });
+        }); // End DOMContentLoaded
+    </script>
 </body>
 </html>
